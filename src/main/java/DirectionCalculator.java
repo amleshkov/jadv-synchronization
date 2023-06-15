@@ -8,6 +8,7 @@ public class DirectionCalculator implements Runnable {
         Long count = route.chars().filter(x -> x == 'R').count();
         synchronized (Main.sizeToFreq) {
             Main.sizeToFreq.merge(count.intValue(), 1, Integer::sum);
+            Main.sizeToFreq.notify();
         }
     }
     public static String generateRoute(String letters, int length) {
